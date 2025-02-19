@@ -30,7 +30,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            # Add known_hosts entry (important!) updated
+            # Add known_hosts entry (important!)
             echo "${{ secrets.EC2_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
 
             ssh ubuntu@${{ secrets.EC2_HOST }} "sudo mkdir -p /var/www/html"
