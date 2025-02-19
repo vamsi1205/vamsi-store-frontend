@@ -30,11 +30,11 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            # Add known_hosts entry (important)
-            echo "${{ secrets.EC2_KNOWN_HOSTS }}" >> ~/.ssh/known_hosts
-
+            # 1. Create directory if it doesn't exist (important!)
             ssh ubuntu@${{ secrets.EC2_HOST }} "sudo mkdir -p /var/www/html"
 
+            # 2. Deploy with rsync (Highly Recommended)
             rsync -avz --delete -e "ssh" ${{ github.workspace }}/dist/vamsi-store-frontend/ ubuntu@${{ secrets.EC2_HOST }}:/var/www/html
 
-            ssh ubuntu@${{ secrets.EC2_HOST }} "sudo systemctl restart nginx" # Or your web server
+            # 3. (Optional) Restart web server after deployment
+            ssh ubuntu@${{ secrets.EC2_HOST }} "sudo systemctl restart nginx"  # Or apache2, or your web server
