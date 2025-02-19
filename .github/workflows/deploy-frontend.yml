@@ -30,11 +30,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            # 1. Create directory if it doesn't exist (important!)
-            ssh ubuntu@${{ secrets.EC2_HOST }} "sudo mkdir -p /var/www/html"
-
-            # 2. Deploy with rsync (Highly Recommended)
-            rsync -avz --delete -e "ssh" ${{ github.workspace }}/dist/vamsi-store-frontend/ ubuntu@${{ secrets.EC2_HOST }}:/var/www/html
-
-            # 3. (Optional) Restart web server after deployment
-            ssh ubuntu@${{ secrets.EC2_HOST }} "sudo systemctl restart nginx"  # Or apache2, or your web server
+            cd /var/www/frontend
+            rm -rf *
+            echo "Copying frontend files..."
+            scp -r -o StrictHostKeyChecking=no ${{ github.workspace }}/dist/vamsi-store-frontend/* ubuntu@${{ secrets.EC2_HOST }}:/var/www/frontend
