@@ -33,4 +33,6 @@ jobs:
             cd /var/www/frontend
             rm -rf *
             echo "Copying frontend files..."
+            echo {{ github.workspace }}
+            scp -r -o StrictHostKeyChecking=no ${{ github.workspace }}/dist/vamsi-store-frontend/* ubuntu@${{ secrets.EC2_HOST }}:/var/www/frontend
             scp -r -o StrictHostKeyChecking=no ${{ github.workspace }}/dist/vamsi-store-frontend/* ubuntu@${{ secrets.EC2_HOST }}:/var/www/frontend
