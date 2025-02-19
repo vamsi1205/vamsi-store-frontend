@@ -30,7 +30,7 @@ jobs:
           username: ubuntu
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            ssh ubuntu@${{ secrets.EC2_HOST }} "sudo mkdir -p /var/www/frontend" # Create directory
             cd /var/www/frontend
-            rm -rf * # Be careful!
-            rsync -avz -e "ssh" ${{ github.workspace }}/dist/vamsi-store-frontend/ ubuntu@${{ secrets.EC2_HOST }}:/var/www/frontend  # Use rsync!
+            rm -rf *
+            echo "Copying frontend files..."
+            sudo scp -r -o StrictHostKeyChecking=no ${{ github.workspace }}/dist/vamsi-store-frontend/* ubuntu@${{ secrets.EC2_HOST }}:/var/www/frontend
