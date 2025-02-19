@@ -1,0 +1,54 @@
+.title {
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    background-color: #c8feff;
+    margin-bottom: 50px;
+  }
+  
+  table {
+    min-width: 70%;
+    margin-top: 50px;
+    border: 1px solid black;
+  }
+  
+  .table-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+  }
+  
+  .table-data {
+    text-align: center;
+  }
+  
+  .buttons-section {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .mat-mdc-raised-button > .mat-icon {
+    margin: 0px !important;
+  }
+  
+  .form {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  
+    &__container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: 50%;
+    }
+  }
+  
+  .spinner {
+    display: flex;
+    justify-self: center;
+  }
+  
